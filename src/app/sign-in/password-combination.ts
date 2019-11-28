@@ -5,11 +5,8 @@ export class PasswordCombination {
         if (control.get('confirmPassword').dirty && control.get('password').dirty) {
             if (control.get('password').value != control.get('confirmPassword').value) {
                 return { passwordCombinationWrong: true };
-            } else {
-                return { passwordCombinationWrong: false };
             }
-        } else {
-            return { passwordCombinationWrong: false };
         }
+        return null;
     }
 }

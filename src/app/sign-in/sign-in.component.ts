@@ -36,6 +36,7 @@ export class SignInComponent implements OnInit {
   });
 
   get username() {
+    //console.log(this.form.get('username'));
     return this.form.get('username');
   }
 
@@ -55,7 +56,7 @@ export class SignInComponent implements OnInit {
     return this.form.get('passwordCombination.confirmPassword');
   }
 
-  log() {
-    console.log(this.form.get('passwordCombination'));
+  addUser(f) {
+    console.log(f.form);
   }
 }
