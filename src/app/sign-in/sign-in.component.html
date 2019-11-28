@@ -1,0 +1,40 @@
+<body class="text-center">
+  <form [formGroup]="form" #f="ngForm" class="form-signin" novalidate (ngSubmit)="log(f)">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input formControlName="username" type="text" id="inputUsername" class="form-control mt-5" placeholder="Username" required autofocus autocomplete="off">
+    <div *ngIf="username.touched && username.invalid" class="alert alert-danger mt-2">
+      <div *ngIf="username.errors.required">Username is required.</div>
+      <div *ngIf="username.errors.minlength">Username should be minimum 3 characters.</div>
+    </div>
+    
+    <label for="inputEmail" class="sr-only">Email addresss</label>
+    <input formControlName="email" type="email" id="inputEmail" class="form-control mt-3" placeholder="Email address" required autocomplete="off">
+    <div *ngIf="email.touched && email.invalid" class="alert alert-danger mt-2">
+      <div *ngIf="email.errors.required">Email is required.</div>
+      <div *ngIf="email.errors.email">Please enter a valid email.</div>
+    </div>
+    
+    <div formGroupName="passwordCombination">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input formControlName="password" type="password" id="inputPassword" class="form-control mt-3" placeholder="Password" required>
+      <div *ngIf="password.touched && password.invalid" class="alert alert-danger mt-2">
+        <div *ngIf="password.errors.required">Password is required.</div>
+        <div *ngIf="password.errors.minlength">Password should be minimum {{ password.errors.minlength.requiredLength }} characters.</div>
+      </div>
+      
+      <label for="confirmPassword" class="sr-only">Password</label>
+      <input formControlName="confirmPassword" type="password" id="confirmPassword" class="form-control mt-3" placeholder="Confirm Password" required>
+      <div *ngIf="confirmPassword.touched && confirmPassword.invalid" class="alert alert-danger mt-2">
+        <div *ngIf="confirmPassword.errors.required">Confirm password is required.</div>
+        <div *ngIf="confirmPassword.errors.minlength">Confirm password should be minimum 6 characters.</div>
+      </div>
+      <div *ngIf="passwordCombination.errors.passwordCombinationWrong" class="alert alert-danger mt-2">
+        Confirm password should match with the password.
+      </div>
+    </div>
+    
+    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign in</button>
+  </form>
+</body>
